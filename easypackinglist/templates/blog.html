@@ -1,0 +1,14 @@
+{% extends 'packinglistapp/templates/base.html' %}
+
+{% block content %}
+<h1>Travel Packing Tips</h1>
+
+{% for post in blog_posts %}
+<article>
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+</article>
+{% endfor %}
+
+<a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}

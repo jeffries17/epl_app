@@ -1,0 +1,633 @@
+[
+  {"template_name": "Start New List",
+  "clothing": [
+    
+  ],
+  "medication": [
+    
+  ],
+  "documents": [
+   
+  ],
+  "toiletries": [
+   
+  ],
+  "footwear": [
+   
+  ],
+  "tech": [
+    
+  ],
+  "snacks": [
+   
+  ],
+  "etc": [
+    
+  ]
+},
+  {
+  "template_name": "Camping",
+  "clothing": [
+    "Waterproof jacket",
+    "Hiking boots",
+    "Wool socks",
+    "Thermal wear",
+    "Hat",
+    "Sunglasses"
+  ],
+  "medication": [
+    "First aid kit",
+    "Insect repellent",
+    "Sunscreen",
+    "Pain relievers",
+    "Allergy medications"
+  ],
+  "documents": [
+    "ID",
+    "Park permits",
+    "Campsite reservation confirmation"
+  ],
+  "toiletries": [
+    "Biodegradable soap",
+    "Toothbrush",
+    "Toothpaste",
+    "Quick-dry towel"
+  ],
+  "footwear": [
+    "Waterproof hiking boots",
+    "Water shoes",
+    "Comfortable campsite shoes"
+  ],
+  "tech": [
+    "Flashlight or headlamp",
+    "Portable charger",
+    "GPS or compass"
+  ],
+  "snacks": [
+    "Trail mix",
+    "Energy bars",
+    "Instant coffee packets"
+  ],
+  "etc": [
+    "Tent",
+    "Sleeping bag",
+    "Camping stove",
+    "Water filter",
+    "Maps",
+    "Multitool"
+  ]
+},
+{
+  "template_name": "Honeymoon",
+  "clothing": [
+    "Evening wear",
+    "Casual outfits",
+    "Swimwear",
+    "Comfortable walking shoes",
+    "Undergarments",
+    "Sunglasses"
+  ],
+  "medication": [
+    "Personal medications",
+    "Digestives",
+    "Pain relievers",
+    "Motion sickness medicine"
+  ],
+  "documents": [
+    "Passports",
+    "Visas",
+    "Hotel and dinner reservations",
+    "Event tickets"
+  ],
+  "toiletries": [
+    "Skincare products",
+    "Hair care products",
+    "Makeup",
+    "Shaving kit"
+  ],
+  "footwear": [
+    "Dress shoes",
+    "Sandals",
+    "Comfortable walking shoes"
+  ],
+  "tech": [
+    "Camera",
+    "Smartphone",
+    "Portable charger",
+    "Travel adapter"
+  ],
+  "snacks": [
+    "Favorite snacks",
+    "Chocolates"
+  ],
+  "etc": [
+    "Jewelry",
+    "Romantic games or activities",
+    "Travel guidebook"
+  ]
+},
+{
+  "template_name": "Safari",
+  "clothing": [
+    "Light, breathable fabrics",
+    "Long-sleeved shirts",
+    "Wide-brimmed hat",
+    "Bandana or scarf",
+    "Sunglasses"
+  ],
+  "medication": [
+    "Malaria prophylaxis",
+    "Insect repellent",
+    "Sunscreen",
+    "First aid kit",
+    "Water purification tablets"
+  ],
+  "documents": [
+    "Passport",
+    "Visa",
+    "Vaccination certificate",
+    "Travel insurance",
+    "Safari booking confirmation"
+  ],
+  "toiletries": [
+    "Biodegradable soap",
+    "Wet wipes or hand sanitizer",
+    "Lip balm with SPF"
+  ],
+  "footwear": [
+    "Sturdy, comfortable boots",
+    "Sandals"
+  ],
+  "tech": [
+    "Binoculars",
+    "Camera with zoom lens",
+    "Spare batteries or portable charger",
+    "Flashlight"
+  ],
+  "snacks": [
+    "Energy bars",
+    "Rehydration packets",
+    "Snack mix"
+  ],
+  "etc": [
+    "Wildlife guidebook",
+    "Lightweight backpack",
+    "High-quality sunglasses",
+    "Dust-proof bags or covers for camera"
+  ]
+},
+{
+  "template_name": "Backpacking Trip",
+  "clothing": [
+    "Lightweight, quick-dry clothing",
+    "Waterproof jacket",
+    "Fleece or down jacket",
+    "Convertible hiking pants",
+    "Breathable underwear",
+    "Merino wool socks",
+    "Wide-brimmed hat",
+    "Bandana or buff"
+  ],
+  "medication": [
+    "First aid kit",
+    "Blister treatment",
+    "Insect repellent",
+    "Sunscreen",
+    "Pain relievers",
+    "Water purification tablets"
+  ],
+  "documents": [
+    "ID or passport",
+    "Trail permits",
+    "Emergency contact information",
+    "Health insurance card",
+    "Map and trail guide"
+  ],
+  "toiletries": [
+    "Biodegradable soap",
+    "Toothbrush",
+    "Toothpaste",
+    "Microfiber towel",
+    "Toilet paper"
+  ],
+  "footwear": [
+    "Lightweight hiking boots or shoes",
+    "Camp sandals",
+    "Gaiters"
+  ],
+  "tech": [
+    "Headlamp with extra batteries",
+    "GPS device",
+    "Solar charger",
+    "Emergency locator beacon"
+  ],
+  "snacks": [
+    "High-calorie meal bars",
+    "Dried fruits and nuts",
+    "Ready-to-eat meals",
+    "Chocolate or energy gels"
+  ],
+  "etc": [
+    "Backpack with rain cover",
+    "Sleeping bag",
+    "Sleeping pad",
+    "Trekking poles",
+    "Cooking stove and fuel",
+    "Lightweight tent",
+    "Bear canister or bags"
+  ]
+},
+{
+  "template_name": "Beach Vacation",
+  "clothing": [
+    "Swimwear",
+    "Cover-ups",
+    "Lightweight shirts",
+    "Shorts",
+    "Evening wear",
+    "Undergarments",
+    "Sun hat",
+    "Sunglasses"
+  ],
+  "medication": [
+    "First aid kit",
+    "Sunburn relief gel",
+    "Sunscreen SPF 50+",
+    "Insect repellent",
+    "Pain relievers",
+    "Motion sickness pills"
+  ],
+  "documents": [
+    "ID or passport",
+    "Hotel reservation confirmation",
+    "Travel insurance information",
+    "Flight tickets",
+    "Visa documents (if applicable)"
+  ],
+  "toiletries": [
+    "Aloe vera gel",
+    "Moisturizer",
+    "Shampoo and conditioner",
+    "Body wash",
+    "Lip balm with SPF",
+    "Deodorant"
+  ],
+  "footwear": [
+    "Flip-flops",
+    "Water shoes",
+    "Evening sandals"
+  ],
+  "tech": [
+    "Waterproof phone case",
+    "Portable charger",
+    "E-reader or tablet"
+  ],
+  "snacks": [
+    "Water bottles",
+    "Snack bars",
+    "Fruit or nut mix"
+  ],
+  "etc": [
+    "Beach towel",
+    "Beach umbrella",
+    "Beach chairs",
+    "Snorkeling gear",
+    "Beach bag",
+    "Cooler"
+  ]
+},
+{
+  "template_name": "Ski Trip",
+  "clothing": [
+    "Thermal base layers",
+    "Ski jacket",
+    "Ski pants",
+    "Fleece or wool mid-layers",
+    "Waterproof gloves or mittens",
+    "Ski socks",
+    "Neck gaiter or scarf",
+    "Beanie",
+    "Ski goggles"
+  ],
+  "medication": [
+    "First aid kit",
+    "Lip balm with SPF",
+    "Sunscreen SPF 50+",
+    "Pain relievers",
+    "Muscle relaxants"
+  ],
+  "documents": [
+    "ID or passport",
+    "Resort booking confirmation",
+    "Ski pass or lift tickets",
+    "Travel insurance documents",
+    "Map of the ski area"
+  ],
+  "toiletries": [
+    "Moisturizer",
+    "Shampoo and conditioner",
+    "Body lotion",
+    "Toothbrush",
+    "Toothpaste"
+  ],
+  "footwear": [
+    "Ski boots",
+    "Snow boots",
+    "Comfortable shoes for after skiing"
+  ],
+  "tech": [
+    "Action camera and mounts",
+    "Portable charger",
+    "Smartphone with ski apps"
+  ],
+  "snacks": [
+    "Thermos for hot beverages",
+    "Energy bars",
+    "Chocolate"
+  ],
+  "etc": [
+    "Skis and ski poles",
+    "Snowboard",
+    "Helmet",
+    "Avalanche safety kit (if backcountry)",
+    "Ski lock"
+  ]
+},
+{
+  "template_name": "City Break",
+  "clothing": [
+    "Comfortable walking shoes",
+    "Casual wear",
+    "Evening attire",
+    "Light jacket or blazer",
+    "Scarf or pashmina",
+    "Sunglasses",
+    "Umbrella or raincoat"
+  ],
+  "medication": [
+    "First aid kit",
+    "Pain relievers",
+    "Digestive aids",
+    "Allergy medications"
+  ],
+  "documents": [
+    "ID or passport",
+    "Hotel reservation confirmation",
+    "City guide and map",
+    "Public transport tickets or pass",
+    "Event tickets (concerts, museums, etc.)"
+  ],
+  "toiletries": [
+    "Travel-size toiletries",
+    "Makeup kit",
+    "Sunscreen",
+    "Hand sanitizer",
+    "Face masks"
+  ],
+  "footwear": [
+    "Comfortable walking shoes",
+    "Dress shoes or heels"
+  ],
+  "tech": [
+    "Smartphone",
+    "Portable charger",
+    "Headphones",
+    "Travel adapter"
+  ],
+  "snacks": [
+    "Reusable water bottle",
+    "Snack bars",
+    "Local snacks or delicacies"
+  ],
+  "etc": [
+    "Daypack or crossbody bag",
+    "Travel journal and pen",
+    "Camera",
+    "Reusable shopping bag"
+  ]
+},
+{
+  "template_name": "Cruise",
+  "clothing": [
+    "Formal attire for dinners",
+    "Casual wear for day activities",
+    "Swimwear",
+    "Cover-ups for poolside",
+    "Light sweater or jacket for breezy nights",
+    "Sunglasses",
+    "Hat"
+  ],
+  "medication": [
+    "First aid kit",
+    "Motion sickness medication",
+    "Sunscreen SPF 50+",
+    "Insect repellent (for shore excursions)",
+    "Pain relievers",
+    "Daily medications"
+  ],
+  "documents": [
+    "Passport",
+    "Cruise tickets",
+    "Travel insurance documents",
+    "Emergency contact information",
+    "Itinerary printouts"
+  ],
+  "toiletries": [
+    "Toothbrush and toothpaste",
+    "Shampoo and conditioner",
+    "Body wash",
+    "Moisturizer",
+    "Shaving supplies"
+  ],
+  "footwear": [
+    "Dress shoes",
+    "Walking shoes for excursions",
+    "Flip-flops for the pool"
+  ],
+  "tech": [
+    "Smartphone and charger",
+    "Camera or action camera",
+    "Portable charger",
+    "Waterproof phone case"
+  ],
+  "snacks": [
+    "Reusable water bottle",
+    "Snack bars",
+    "Tea or coffee packets"
+  ],
+  "etc": [
+    "Binoculars for sightseeing",
+    "Travel books or e-reader",
+    "Beach bag",
+    "Small backpack for day trips"
+  ]
+},
+{
+  "template_name": "Road Trip",
+  "clothing": [
+    "Comfortable driving clothes",
+    "Layered outfits for varying weather",
+    "Extra socks and underwear",
+    "Jacket or sweater",
+    "Sunglasses",
+    "Hat or cap"
+  ],
+  "medication": [
+    "First aid kit",
+    "Pain relievers",
+    "Motion sickness pills",
+    "Allergy medications",
+    "Any prescribed medications"
+  ],
+  "documents": [
+    "Driver’s license",
+    "Vehicle insurance and registration",
+    "Road maps and GPS device",
+    "Hotel or camping reservation confirmations",
+    "National park passes (if applicable)"
+  ],
+  "toiletries": [
+    "Toothbrush and toothpaste",
+    "Deodorant",
+    "Shampoo and soap",
+    "Sunscreen",
+    "Hand sanitizer"
+  ],
+  "footwear": [
+    "Comfortable driving shoes",
+    "Hiking boots or walking shoes",
+    "Flip-flops (for quick stops or showers)"
+  ],
+  "tech": [
+    "Smartphone and car charger",
+    "Portable charger",
+    "Music playlist or audio books",
+    "Camera"
+  ],
+  "snacks": [
+    "Cooler with beverages",
+    "Snack bars",
+    "Fresh fruits and sandwiches",
+    "Chips and nuts"
+  ],
+  "etc": [
+    "Spare car key",
+    "Flashlight",
+    "Travel pillow and blanket",
+    "Emergency car kit (jumper cables, tire inflator, etc.)",
+    "Trash bags"
+  ]
+},
+{
+  "template_name": "Business Trip",
+  "clothing": [
+    "Business suits",
+    "Dress shirts or blouses",
+    "Ties or scarves",
+    "Dress shoes",
+    "Casual wear for downtime",
+    "Sleepwear",
+    "Gym clothes (if using hotel fitness center)",
+    "Light jacket or coat depending on the season"
+  ],
+  "medication": [
+    "First aid kit",
+    "Pain relievers",
+    "Allergy medications",
+    "Prescription medications"
+  ],
+  "documents": [
+    "Passport/ID",
+    "Flight and hotel booking confirmations",
+    "Event or conference tickets",
+    "Business cards",
+    "Work documents and presentations"
+  ],
+  "toiletries": [
+    "Toothbrush and toothpaste",
+    "Deodorant",
+    "Shaving kit",
+    "Hair styling products",
+    "Makeup kit"
+  ],
+  "footwear": [
+    "Dress shoes",
+    "Casual shoes for off-duty activities"
+  ],
+  "tech": [
+    "Laptop and charger",
+    "Smartphone and charger",
+    "Portable charger",
+    "Universal travel adapter",
+    "USB drive or secure cloud storage access"
+  ],
+  "snacks": [
+    "Reusable water bottle",
+    "Healthy snack bars",
+    "Instant coffee or tea packets"
+  ],
+  "etc": [
+    "Briefcase or laptop bag",
+    "Notebook and pens",
+    "Travel iron or steamer",
+    "Umbrella"
+  ]
+},
+{
+  "template_name": "Family Vacation",
+  "clothing": [
+    "Casual wear for each family member",
+    "Swimwear",
+    "Evening outfits for special dinners",
+    "Jackets or sweaters depending on the climate",
+    "Hats and sunglasses for everyone",
+    "Comfortable walking shoes"
+  ],
+  "medication": [
+    "First aid kit",
+    "Children's pain reliever and fever reducer",
+    "Allergy medications",
+    "Motion sickness pills",
+    "Sunscreen SPF 50+",
+    "Insect repellent"
+  ],
+  "documents": [
+    "Passports/IDs for all family members",
+    "Travel and health insurance information",
+    "Hotel and activity reservation confirmations",
+    "Maps and travel guides",
+    "List of emergency contacts"
+  ],
+  "toiletries": [
+    "Toothbrushes and toothpaste",
+    "Shampoo, conditioner, and body wash",
+    "Baby wipes and diapers (if applicable)",
+    "Hairbrushes and hair ties",
+    "Deodorant"
+  ],
+  "footwear": [
+    "Sandals",
+    "Walking shoes",
+    "Water shoes (if visiting beaches or lakes)"
+  ],
+  "tech": [
+    "Smartphones and chargers",
+    "Tablet or portable DVD player for entertainment",
+    "Camera",
+    "Portable chargers"
+  ],
+  "snacks": [
+    "Reusable water bottles",
+    "Snacks for the road (crackers, fruit, sandwiches)",
+    "Baby formula or snacks (if applicable)"
+  ],
+  "etc": [
+    "Strollers or baby carriers",
+    "Travel games and books",
+    "Beach toys",
+    "Backpacks for day trips",
+    "Laundry bag"
+  ]
+}
+
+]

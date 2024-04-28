@@ -1,0 +1,382 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="container-fluid mt-3 mb-3 text-center">
+            <div class="custom-background-section" style="background-image: url('{% if selected_template_name %}{% static 'images/trip_images/'|add:selected_template_name|add:'_background.jpg' %}{% else %}{% static 'images/trip_images/trip_background.jpg' %}{% endif %}');">
+                <div class="text-overlay">
+                    <h1 id="tripNameHeader">
+                        {% if trip %}
+                            {{ trip.name|default:"Trip Name Will Appear Here" }}
+                        {% elif selected_template_name %}
+                            {{ selected_template_name }}
+                        {% else %}
+                            Trip Name Will Appear Here
+                        {% endif %}
+                    </h1>
+                    <h4 id="tripDetailsMessage">
+                        {% if trip %}
+                            Destination: {{ trip.destination|default:"Destination Will Appear Here" }},
+                            Start Date: {{ trip.start_date|default:"Start Date Will Appear Here" }}
+                        {% else %}
+                            Update with your trip details in the sidebar.
+                        {% endif %}
+                    </h4>
+                </div>
+            </div>
+        </div>      
+          
+        <div class="col-md-3 bg-light p-4 mb-5 mx-2 trip-details-column">
+            <h2>Add Items</h2>
+                <form id="addItemForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Item name" id="itemName" name="itemName" required>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" id="itemCategory" name="itemCategory">
+                            <option selected>Category...</option>
+                            {% for category in categories %}
+                            <option value="{{ category }}">{{ category }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-outline-secondary" type="submit">Add</button>
+                    </div>
+                </form>
+            <div id="tripDetailsContainer">
+                <h2>Trip Details</h2>
+                <form id="tripDetailsForm" method="post" action="{% url 'packing_list' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="tripName">Trip Name:</label>
+                        <input type="text" class="form-control" id="tripName" name="name" value="{{ trip.name|default:'' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="tripStartDate">Trip Start Date:</label>
+                        <input type="date" class="form-control" id="tripStartDate" name="start_date" value="{{ trip.start_date|date:'Y-m-d' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="destinationCity">Destination City:</label>
+                        <input type="text" class="form-control" id="destinationCity" name="destination_city" value="{{ trip.destination|default:'' }}">
+                    </div>                            
+                    <!-- Traveling internationally section -->
+                    <div class="form-group">
+                        <input type="checkbox" id="isInternationalTravel" name="isInternationalTravel" onchange="toggleInternationalFields()">
+                        <label for="isInternationalTravel">Traveling internationally?</label>
+                    </div>
+                    <div id="internationalFields" style="display: none;">
+                        <div class="form-group">
+                            <label for="residenceCountry">Residence Country:</label>
+                            <select class="form-control" id="residenceCountry" name="residenceCountry">
+                                {% for country in countries %}
+                                <option value="{{ country }}">{{ country }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="destinationCountry">Destination Country:</label>
+                            <select class="form-control" id="destinationCountry" name="destinationCountry">
+                                {% for country in countries %}
+                                <option value="{{ country }}">{{ country }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary mb-3">Add Visa</button>
+                    </div>
+            
+                    <!-- Packing list fields -->
+                    <input type="hidden" id="itemsToPack" name="items_to_pack" value='[]'>
+                    <input type="hidden" id="itemsPacked" name="items_packed" value='[]'>
+                    <input type="hidden" name="template_name" value="{{ selected_template_name }}">
+                    <!-- Hidden UUID field for identifying the trip -->
+                    <input type="hidden" name="trip_uuid" value="{{ trip.uuid }}">
+                    <button type="submit" class="btn btn-primary mb-3" id="saveTripDetails">Update Trip Details</button>
+                </form>
+                            
+            </div>
+            <h2>Save Trip</h2>
+            <div class="form-group" style="width: 100%;">
+                <button type="button" form="tripDetailsForm" class="btn btn-success" style="width: 100%;" id="saveList">Save List</button>
+                <p id="saveMessage" style="display:none;"></p>
+            </div>
+            </form>
+        </div>
+       
+        <div class="col-md-4 mb-8 packing-column mx-2">
+            <h2 class='mt-2'>To Pack</h2>
+
+            {% for category, items in lists.to_pack.items %}
+                <h4>{{ category }}</h4>
+                <ul class="list-group" id="toPackList-{{ category|slugify }}">
+                    {% for item in items %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center mt-1">
+                        {{ item }}
+                        <span>
+                            <i class="fas fa-check text-success" onclick="packItem('{{ item }}', '{{ category }}')"></i>
+                            <i class="fas fa-trash-alt text-danger" onclick="removeItem('{{ item }}', '{{ category }}')"></i>
+                        </span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+        
+        <div class="col-md-4 packing-column">
+            <h2 class='mt-2'>Packed</h2>
+            {% for category, items in lists.packed.items %}
+                <h4>{{ category }}</h4>
+                <ul class="list-group" id="packedList-{{ category|slugify }}">
+                    {% for item in items %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center mt-1">
+                        {{ item }}
+                        <span>
+                            <i class="fas fa-trash-alt text-danger" onclick="removeItem('{{ item }}', '{{ category }}')"></i>
+                        </span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    $('#saveList').click(function(event) {
+        event.preventDefault(); // Stop the form from submitting through normal means
+    
+        // Update hidden fields just before sending
+        $('#itemsToPack').val(JSON.stringify(itemsToPack));
+        $('#itemsPacked').val(JSON.stringify(itemsPacked));
+    
+        var formData = $('#tripDetailsForm').serialize();
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    
+        $.ajax({
+            url: '{% url "packing_list" %}',
+            type: 'POST',
+            data: formData,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("X-CSRFToken", csrfToken);
+            },
+            success: function(response) {
+                console.log("AJAX call successful."); // Debugging line
+                $('#saveMessage').text('List saved!').fadeIn().delay(3000).fadeOut();
+            },
+            error: function(xhr, status, error) {
+                console.log("AJAX call failed: " + error); // Debugging line
+                $('#saveMessage').text('Error saving list.').fadeIn().delay(3000).fadeOut();
+            }
+        });
+    });
+
+    let itemsToPack = [];
+    let itemsPacked = [];
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to initialize itemsToPack with items already listed in the HTML
+        document.querySelectorAll('.list-group').forEach(function(list) {
+            const categorySlug = list.id.replace('toPackList-', '');
+            list.querySelectorAll('li').forEach(function(itemElement) {
+                // Assuming the item's name is the entire text content of the <li> element
+                // You might need to adjust this if the item names include the icons' text
+                const itemName = itemElement.textContent.trim();
+                itemsToPack.push({ name: itemName, category: categorySlug });
+            });
+        });
+    
+        // Event listeners for dynamic interactions
+        document.querySelectorAll('.packing-column').forEach(function(container) {
+            container.addEventListener('click', function(event) {
+                if (event.target.classList.contains('fa-check')) {
+                    moveItemToPacked(event.target);
+                } else if (event.target.classList.contains('fa-trash-alt')) {
+                    removeItem(event.target);
+                }
+            });
+        });
+    
+        document.getElementById('addItemForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form submission
+            addItem();
+        });
+    
+        function addItem() {
+            const itemName = document.getElementById('itemName').value;
+            const itemCategory = document.getElementById('itemCategory').value;
+            const listId = `toPackList-${itemCategory.toLowerCase().replace(/\s+/g, '-')}`;
+            const list = document.getElementById(listId);
+    
+            // Add the new item to itemsToPack
+            itemsToPack.push({name: itemName, category: itemCategory});
+    
+            if (list && itemName.trim() !== '') {
+                const newItem = document.createElement('li');
+                newItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center', 'mt-1');
+                newItem.innerHTML = `${itemName} <span>
+                                        <i class="fas fa-check text-success" onclick="moveItemToPacked(this)"></i>
+                                        <i class="fas fa-trash-alt text-danger" onclick="removeItem(this)"></i>
+                                    </span>`;
+                list.appendChild(newItem);
+    
+                // Reset the form fields for next item entry
+                document.getElementById('itemName').value = '';
+                document.getElementById('itemCategory').selectedIndex = 0;  // Reset category selection
+            }
+        }
+    
+        function moveItemToPacked(targetIcon) {
+            const itemElement = targetIcon.closest('li');
+            const itemName = itemElement.textContent.trim();
+            const categorySlug = itemElement.closest('ul').id.split('-').pop();
+            const packedListId = `packedList-${categorySlug}`;
+            const packedList = document.getElementById(packedListId);
+    
+            if (packedList) {
+                itemsToPack = itemsToPack.filter(item => item.name !== itemName);
+                itemsPacked.push({name: itemName, category: categorySlug});
+    
+                packedList.appendChild(itemElement);
+    
+                const checkIcon = itemElement.querySelector('.fa-check');
+                if (checkIcon) {
+                    checkIcon.remove();
+                }
+            }
+        }
+    
+        function removeItem(targetIcon) {
+            const itemElement = targetIcon.closest('li');
+            const itemName = itemElement.textContent.trim();
+            itemsToPack = itemsToPack.filter(item => item.name !== itemName);
+            itemsPacked = itemsPacked.filter(item => item.name !== itemName);
+    
+            itemElement.remove();
+        }
+    });
+ 
+
+// international
+
+var visaRequirements = {{ visa_requirements|safe }};
+
+    function toggleInternationalFields() {
+        var checkBox = document.getElementById("isInternationalTravel");
+        var internationalFields = document.getElementById("internationalFields");
+        internationalFields.style.display = checkBox.checked ? "block" : "none";
+    }
+
+    function addVisa() {
+        var residenceCountry = document.getElementById("residenceCountry").value;
+        var destinationCountry = document.getElementById("destinationCountry").value;
+    
+        var requirement = visaRequirements.find(function(req) {
+            return req.Passport === residenceCountry && req.Destination === destinationCountry;
+        });
+    
+        var listItemText;
+        if (requirement && !isNaN(requirement.Requirement)) {
+            listItemText = "Passport Only for " + requirement.Requirement + "-Day Visit";
+        } else if (requirement) {
+            listItemText = residenceCountry + " ✈️ " + destinationCountry + ": " + requirement.Requirement;
+        } else {
+            listItemText = "Visa requirement not found";
+        }
+    
+        var ul = document.getElementById("toPackList-documents");
+        if (!ul) {
+            console.error("Couldn't find the Documents list. Check the ID.");
+            return;
+        }
+        
+        var li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-center mt-1";
+    
+        // Text content for the item
+        var textSpan = document.createElement("span");
+        textSpan.textContent = listItemText;
+        li.appendChild(textSpan);
+    
+        // Span to hold icons
+        var iconSpan = document.createElement("span");
+    
+        // Pack (check) icon
+        var packIcon = document.createElement("i");
+        packIcon.className = "fas fa-check text-success";
+        packIcon.onclick = function() { packItem(listItemText, 'Documents'); };
+        iconSpan.appendChild(packIcon);
+    
+        // Delete (trash) icon
+        var deleteIcon = document.createElement("i");
+        deleteIcon.className = "fas fa-trash-alt text-danger";
+        deleteIcon.style.marginLeft = "10px"; // Add some space between icons
+        deleteIcon.onclick = function() { removeItem(listItemText, 'Documents'); };
+        iconSpan.appendChild(deleteIcon);
+    
+        // Append the icons to the list item
+        li.appendChild(iconSpan);
+    
+        // Append the new list item to the list
+        ul.appendChild(li);
+    }
+    
+
+    document.querySelector('button.btn-primary.mb-3').addEventListener('click', addVisa);
+
+// update header, hide form
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('saveTripDetails').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default form submission if using AJAX
+
+        // Extract values from form inputs
+        const tripName = document.getElementById('tripName').value;
+        const destinationCity = document.getElementById('destinationCity').value;
+        const tripStartDate = new Date(document.getElementById('tripStartDate').value);
+        const today = new Date();
+        const timeDiff = tripStartDate - today;
+        const daysUntilTrip = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+        // Update the <h1> and <h4> tags with trip details
+        document.getElementById('tripNameHeader').textContent = tripName;
+        document.getElementById('tripDetailsMessage').textContent = `Get ready! Your trip to ${destinationCity} is in ${daysUntilTrip} days...`;
+
+        // Hide the trip details form
+        document.getElementById('tripDetailsForm').style.display = 'none';
+
+        // Show the "Update Trip Details?" button if not already visible
+        const updateButton = document.getElementById('updateTripDetailsButton');
+        if (!updateButton) {
+            // If the button doesn't exist, create it and add it to the DOM
+            const newButton = document.createElement('button');
+            newButton.id = 'updateTripDetailsButton';
+            newButton.textContent = 'Update Trip Details?';
+            newButton.classList.add('btn', 'btn-info');
+            newButton.addEventListener('click', function() {
+                // Show the form again when this button is clicked
+                document.getElementById('tripDetailsForm').style.display = 'block';
+                this.style.display = 'none'; // Hide the "Update Trip Details?" button
+            });
+            
+            // Assuming you have a div with id="tripDetailsContainer" wrapping the form
+            document.getElementById('tripDetailsContainer').appendChild(newButton);
+        } else {
+            // If the button already exists, simply show it
+            updateButton.style.display = 'block';
+        }
+
+    });
+});
+</script>
+        
+ {% endblock %}

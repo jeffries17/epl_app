@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid pb-5">
+<div class="container mt-5">
+    <div class="custom-jumbotron" style="background-image: url('{% static 'images/trip_background.jpg' %}');">
+        <h1 class="display-4">Tired of the Stress and Mess of Packing?</h1>
+        <p class="lead">Easy Packing List takes the hassle out of preparing for trips.</p>
+    </div>
+
+    <section class="container text-center mt-5">
+        
+    </section>
+
+    <section class="container">
+        <div class="row justify-content-center section">
+        <h2 class="">Pick Your Packing List</h2>
+        <p>Whether you're traveling for business or pleasure, we've got a list ready for you. Get started below!</p>
+        </div>
+        <div class="row justify-content-center mt-5 section">
+        {% for template_name in templates %}
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <img src="{% static 'images/'|add:template_name|add:'.png' %}" class="card-img-top" alt="{{ template_name }}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ template_name }}</h5>
+                    <form action="/packing-list/" method="get">
+                        <input type="hidden" name="template" value="{{ template_name }}">
+                        <button type="submit" class="btn btn-primary">Choose</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+    
+<section class="container mt-5">
+    <div class="row justify-content-center section">
+        <div class="col-12 text-center mb-3">
+            <h2>By Travelers, For Travelers</h2>
+            <p>Our team of seasoned travelers and tech enthusiasts came together to solve the most tedious part of traveling—packing.</p>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-danger text-white">
+                    <h4>Packing Before</h4>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>😟 Arriving without the right items</li>
+                        <li>🕒 Hours of research to prepare each list</li>
+                        <li>🤯 Losing track of what's already packed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h4>Getting Ready Now</h4>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>😌 Peace of mind with expert-curated lists</li>
+                        <li>🌍 All-in-one solution: weather, visas, templates</li>
+                        <li>✨ Efficient packing with pre-built and customizable templates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 text-center mt-4">
+            <h3>🧳{{ trip_count }} trips packed so far!🧳</h3>
+            <p>Join our community of satisfied travelers who’ve simplified their packing process.</p>
+        </div>
+    </div>
+</section>
+
+
+<div class="container mt-5 section">
+    <h2 class="text-center mb-4">Choose Your Plan</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title">Basic</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li>🔄 Access to standard packing lists</li>
+                        <li>🎒 Pack essentials checklist</li>
+                        <li>🌎 Comprehensive passport + visa database</li>
+                        <li>💼 Custom list creation</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'signup' %}" class="btn btn-primary btn-block">Sign Up for Free</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-5">
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title">Premium</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li>✅ All features in Basic</li>
+                        <li>🌤 Weather alerts</li>
+                        <li>📅 Real-time travel updates</li>
+                        <li>👥 Premium support</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-success btn-block">$5/list - Coming Soon</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 section">
+    <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+    <div id="faqAccordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How do I customize a packing list?
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+                <div class="card-body">
+                    Customizing a packing list is easy! Start by selecting a template that closely matches your trip type, then add or remove items to suit your specific needs.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        What if I can't find a list that suits my trip?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+                <div class="card-body">
+                    If you can't find a pre-made list that suits your needs, you can start from scratch and create a custom list or contact us for a personalized consultation.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        How do I save my packing list?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
+                <div class="card-body">
+                    Once you've created or customized your packing list, you can save it by logging into your account and clicking the "Save" button. This will store your list for future access.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+{% endblock %}

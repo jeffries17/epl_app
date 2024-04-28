@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <title>Easy Packing List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/packinglist.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Easy Packing List</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto"> 
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/packing-list/?template=Start+New+List">New List</a></li> <!-- New List Link -->
+                <li class="nav-item"><a class="nav-link" href="{% url 'my_trips' %}">My Lists</a></li> 
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                <!-- Authentication check starts here -->
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="#">User: {{ user.get_username }}</a></li>
+                    <li class="nav-item">
+                        <form id="logout-form" method="post" action="{% url 'logout' %}" class="form-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link nav-link" style="color: rgba(255,255,255,.5);">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                {% endif %}
+                <!-- Authentication check ends here -->
+            </ul>
+        </div>
+    </header>
+    
+
+<main role="main" class="container">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer mt-auto py-3 bg-light fixed-bottom">
+    <div class="container">
+        <span class="text-muted">&copy; 2024 Easy Packing List | Packed with 🧳 by <a href="https://twitter.com/alexmjeffries">Alex</a></span>
+    </div>
+</footer>
+
+<!-- Popper.js, then Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
