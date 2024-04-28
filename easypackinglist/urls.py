@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', views.home, name='home2'),
     # path('packing-list/', views.packing_list, name='packing_list'),
     # # Path for editing an existing trip (includes UUID)
     # path('packing-list/<uuid:trip_uuid>/', views.packing_list, name='packing_list_edit'),
