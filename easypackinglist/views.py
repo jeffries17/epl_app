@@ -88,9 +88,6 @@ def handle_items(request, trip):
             }
         )
 
-    # Update items_packed to retain items that are still packed
-    items_packed = [item for item in items_packed if item in items_to_pack]
-
     # Delete items that are no longer mentioned
     existing_item_names = set(Item.objects.filter(trip=trip).values_list('name', flat=True))
     items_mentioned = set(all_items.keys())

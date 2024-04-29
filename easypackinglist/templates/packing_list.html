@@ -122,9 +122,9 @@
                     {% for item in items %}
                     <li class="list-group-item d-flex justify-content-between align-items-center mt-1">
                         {{ item }}
-                        <span>
-                            <i class="fas fa-check text-success" onclick="packItem('{{ item }}', '{{ category }}')"></i>
-                            <i class="fas fa-trash-alt text-danger" onclick="removeItem('{{ item }}', '{{ category }}')"></i>
+                        <span id="actionIcons">
+                            <i class="fas fa-check text-success pack-icon"></i>
+                            <i class="fas fa-trash-alt text-danger remove-icon"></i>
                         </span>
                     </li>
                     {% endfor %}
@@ -185,26 +185,34 @@
     let itemsPacked = [];
     
     document.addEventListener('DOMContentLoaded', function() {
-        // Function to initialize itemsToPack with items already listed in the HTML
+        // Function to initialize itemsToPack and itemsPacked with items already listed in the HTML
         document.querySelectorAll('.list-group').forEach(function(list) {
-            const categorySlug = list.id.replace('toPackList-', '');
+            const categorySlug = list.id.replace('toPackList-', '').replace('packedList-', ''); // Get the category slug
             list.querySelectorAll('li').forEach(function(itemElement) {
-                // Assuming the item's name is the entire text content of the <li> element
-                // You might need to adjust this if the item names include the icons' text
+    
                 const itemName = itemElement.textContent.trim();
-                itemsToPack.push({ name: itemName, category: categorySlug });
+                const categoryPrefix = list.id.startsWith('toPackList') ? 'toPackList-' : 'packedList-'; // Determine the correct prefix
+                const category = categoryPrefix + categorySlug; // Construct the category name
+                console.log('Initialized item:', itemName, 'Category:', category); // Debugging line
+                if (categoryPrefix === 'toPackList-') {
+                    itemsToPack.push({ name: itemName, category: category });
+                } else {
+                    itemsPacked.push({ name: itemName, category: category });
+                }
             });
         });
     
-        // Event listeners for dynamic interactions
-        document.querySelectorAll('.packing-column').forEach(function(container) {
-            container.addEventListener('click', function(event) {
-                if (event.target.classList.contains('fa-check')) {
-                    moveItemToPacked(event.target);
-                } else if (event.target.classList.contains('fa-trash-alt')) {
-                    removeItem(event.target);
-                }
-            });
+        // Add event listeners to the document body
+        document.body.addEventListener('click', function(event) {
+            const target = event.target;
+            // If the clicked element is a pack icon
+            if (target.classList.contains('pack-icon')) {
+                packItem(target);
+            }
+            // If the clicked element is a remove icon
+            else if (target.classList.contains('remove-icon')) {
+                removeItem(target);
+            }
         });
     
         document.getElementById('addItemForm').addEventListener('submit', function(event) {
@@ -217,44 +225,55 @@
             const itemCategory = document.getElementById('itemCategory').value;
             const listId = `toPackList-${itemCategory.toLowerCase().replace(/\s+/g, '-')}`;
             const list = document.getElementById(listId);
-    
+        
             // Add the new item to itemsToPack
-            itemsToPack.push({name: itemName, category: itemCategory});
-    
+            itemsToPack.push({ name: itemName, category: itemCategory });
+        
             if (list && itemName.trim() !== '') {
                 const newItem = document.createElement('li');
                 newItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center', 'mt-1');
-                newItem.innerHTML = `${itemName} <span>
-                                        <i class="fas fa-check text-success" onclick="moveItemToPacked(this)"></i>
-                                        <i class="fas fa-trash-alt text-danger" onclick="removeItem(this)"></i>
-                                    </span>`;
+                newItem.textContent = itemName;
+        
+                // Create span for action icons
+                const actionIcons = document.createElement('span');
+                actionIcons.classList.add('action-icons');
+                const packIcon = document.createElement('i');
+                packIcon.classList.add('fas', 'fa-check', 'text-success', 'pack-icon');
+                const removeIcon = document.createElement('i');
+                removeIcon.classList.add('fas', 'fa-trash-alt', 'text-danger', 'remove-icon');
+                actionIcons.appendChild(packIcon);
+                actionIcons.appendChild(removeIcon);
+        
+                newItem.appendChild(actionIcons);
                 list.appendChild(newItem);
-    
+        
                 // Reset the form fields for next item entry
                 document.getElementById('itemName').value = '';
                 document.getElementById('itemCategory').selectedIndex = 0;  // Reset category selection
             }
         }
     
-        function moveItemToPacked(targetIcon) {
+        function packItem(targetIcon) {
             const itemElement = targetIcon.closest('li');
             const itemName = itemElement.textContent.trim();
             const categorySlug = itemElement.closest('ul').id.replace('toPackList-', '').replace('packedList-', '');  // Strip prefixes
             const packedListId = `packedList-${categorySlug}`;
             const packedList = document.getElementById(packedListId);
-    
+        
             if (packedList) {
                 itemsToPack = itemsToPack.filter(item => item.name !== itemName);
-                itemsPacked.push({name: itemName, category: categorySlug});
-    
+                itemsPacked.push({ name: itemName, category: categorySlug });
+        
                 packedList.appendChild(itemElement);
-    
-                const checkIcon = itemElement.querySelector('.fa-check');
-                if (checkIcon) {
-                    checkIcon.remove();
+        
+                // Remove the pack icon from the action icons
+                const packIcon = itemElement.querySelector('.pack-icon');
+                if (packIcon) {
+                    packIcon.remove();
                 }
             }
         }
+        
     
         function removeItem(targetIcon) {
             const itemElement = targetIcon.closest('li');
