@@ -1,0 +1,125 @@
+.packing-column {
+  border: 1px solid #dee2e6; /* Bootstrap's border color */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* subtle shadow */
+  padding: 20px;
+  margin-bottom: 20px; /* space at the bottom */
+  background-color: #f8f9fa; /* slightly off-white background */
+}
+
+.packing-column h2 {
+  text-align: center;
+  border-bottom: 2px solid #007bff; /* Bootstrap primary color */
+  padding-bottom: 10px;
+  margin-bottom: 20px; /* space below the header */
+}
+
+.list-group-item {
+  border-left: 3px solid #007bff; /* adds a left border to list items */
+  background-color: #ffffff; /* white background for contrast */
+  margin-top: 5px; /* space between items */
+}
+
+.trip-details-column {
+  max-height: 1000px; /* Adjust based on your design needs */
+  overflow-y: auto; /* Enables vertical scrolling */
+  background-color: #f8f9fa; /* Light grey background */
+  border: 1px solid #dee2e6; /* Light grey border */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  padding: 20px;
+  margin-bottom: 20px; /* Adds space below the column */
+}
+
+/* General section styling for depth and definition */
+.section {
+  background-color: #f8f9fa; /* Slightly off-white background */
+  border: 1px solid #dee2e6; /* Light grey border */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  padding: 20px;
+  margin-bottom: 20px; /* Space at the bottom of each section */
+  border-radius: 5px; /* Optional: Adds rounded corners for a softer look */
+}
+
+.section h2 {
+  text-align: center;
+  border-bottom: 2px solid #007bff; /* Bootstrap primary color for emphasis */
+  padding-bottom: 10px;
+  margin-bottom: 20px; /* Space below the header */
+}
+
+/* Enhanced card styling for 3D effect */
+.card {
+  background-color: #ffffff; /* White background for cards */
+  border: 1px solid #dee2e6; /* Consistent with section borders */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Slightly stronger shadow for more depth */
+  margin-bottom: 20px; /* Space below each card */
+  border-radius: 5px; /* Rounded corners for cards */
+}
+
+.card-img-top {
+  height: 180px; /* Fixed height to ensure uniformity */
+  object-fit: contain; /* Ensures the whole image is visible */
+  width: 100%; /* Ensures the image width fits the card width */
+}
+
+.card-title {
+  font-size: 1.2rem; /* Slightly larger font size for better visibility */
+}
+
+.btn-primary, .btn-success {
+  width: 100%; /* Full width buttons within the card */
+}
+
+.list-group-item {
+  border-left: 3px solid #007bff; /* Adds a left border to list items for visual separation */
+  background-color: #ffffff; /* Ensures contrast with slightly off-white section background */
+  margin-top: 5px; /* Space between items */
+}
+
+.blog-title-section {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.blog-content-section {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+.text-overlay {
+  color: white;
+  padding: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  height: 100%;
+  text-align: center; 
+}
+
+
+.custom-background-section {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border-radius: 15px;
+  height: 200px;
+  width: 100%;
+}
+
+.custom-jumbotron {
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 15px;
+  align-items: center;
+  height: 300px; 
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}

@@ -239,7 +239,7 @@
         function moveItemToPacked(targetIcon) {
             const itemElement = targetIcon.closest('li');
             const itemName = itemElement.textContent.trim();
-            const categorySlug = itemElement.closest('ul').id.split('-').pop();
+            const categorySlug = itemElement.closest('ul').id.replace('toPackList-', '').replace('packedList-', '');  // Strip prefixes
             const packedListId = `packedList-${categorySlug}`;
             const packedList = document.getElementById(packedListId);
     

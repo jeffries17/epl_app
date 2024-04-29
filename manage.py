@@ -1,11 +1,19 @@
-#!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
 import os
 import sys
+from dotenv import load_dotenv
 
+
+import os
+import sys
+from dotenv import load_dotenv
 
 def main():
     """Run administrative tasks."""
+    # Load environment variables from .env file at the start of the main function
+    dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+    if os.path.exists(dotenv_path):
+        load_dotenv(dotenv_path)
+
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'epl_app.settings')
     try:
         from django.core.management import execute_from_command_line
@@ -17,6 +25,6 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
-
 if __name__ == '__main__':
     main()
+
