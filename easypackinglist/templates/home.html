@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container-fluid pb-5">
 <div class="container mt-5">
-    <div class="custom-jumbotron" style="background-image: url('{% static 'images/trip_background.jpg' %}');">
+    <div class="custom-jumbotron" style="background-image: url('{% static 'images/trip_images/trip_background.jpg' %}');">
         <h1 class="display-4 text-center text-sm-center">Tired of the Stress and Mess of Packing?</h1>
         <p class="lead text-center text-sm-center">Easy Packing List takes the hassle out of preparing for trips.</p>
     </div>
@@ -22,7 +22,7 @@
         {% for template_name in templates %}
         <div class="col-md-3">
             <div class="card mb-4">
-                <img src="{% static 'images/'|add:template_name|add:'.png' %}" class="card-img-top" alt="{{ template_name }}">
+                <img src="{% static 'images/trip_images/'|add:template_name|add:'.png' %}" class="card-img-top" alt="{{ template_name }}">
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ template_name }}</h5>
                     <form action="/packing-list/" method="get">
