@@ -113,13 +113,19 @@
 }
 
 .custom-jumbotron {
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 15px;
-  align-items: center;
-  height: 300px; 
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  background-image: url('/static/images/trip_images/trip_background.jpg');
+  background-size: cover; /* Ensure the background image covers the entire container */
+  background-position: center; /* Center the background image */
+  padding: 50px; /* Add padding around the content */
+  text-align: center; /* Center-align text */
+  border-radius: 15px; /* Add rounded corners */
+  color: white; /* Text color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow */
+}
+
+/* Adjustments for small screens */
+@media (max-width: 576px) {
+  .custom-jumbotron {
+    padding: 30px; /* Reduce padding for smaller screens */
+  }
 }
