@@ -22,7 +22,7 @@
         {% for template_name in templates %}
         <div class="col-md-3">
             <div class="card mb-4">
-                <img src="{% static 'images/'|add:template_name|add:'.png' %}" class="card-img-top" alt="{{ template_name }}">
+                <img src="{% static 'images/'|add:template_name|lower|add:'.png' %}" class="card-img-top" alt="{{ template_name }}">
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ template_name }}</h5>
                     <form action="/packing-list/" method="get">
