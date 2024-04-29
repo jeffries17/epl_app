@@ -8,8 +8,6 @@ import sys
 from dotenv import load_dotenv
 
 def main():
-    """Run administrative tasks."""
-    # Load environment variables from .env file at the start of the main function
     dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
     if os.path.exists(dotenv_path):
         load_dotenv(dotenv_path)
