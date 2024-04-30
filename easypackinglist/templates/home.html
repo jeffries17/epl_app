@@ -3,38 +3,40 @@
 
 {% block content %}
 <div class="container-fluid pb-5">
-<div class="container mt-5">
-    <div class="custom-jumbotron">
-        <h1 class="display-4 text-center text-sm-center">Tired of the Stress and Mess of Packing?</h1>
-        <p class="lead text-center text-sm-center">Easy Packing List takes the hassle out of preparing for trips.</p>
-    </div>
-
-    <section class="container text-center mt-5">
-        
-    </section>
-
-    <section class="container">
-        <div class="row justify-content-center section">
-        <h2 class="">Pick Your Packing List</h2>
-        <p>Whether you're traveling for business or pleasure, we've got a list ready for you. Get started below!</p>
+    <div class="container mt-5">
+        <div class="custom-jumbotron">
+            <h1 class="display-4 text-center text-sm-center">Tired of the Stress and Mess of Packing?</h1>
+            <p class="lead text-center text-sm-center">Easy Packing List takes the hassle out of preparing for trips.</p>
         </div>
-        <div class="row justify-content-center mt-5 section">
-        {% for template_name in templates %}
-        <div class="col-md-3">
-            <div class="card mb-4">
-                <img src="{% static 'images/'|add:template_name|lower|add:'.png' %}" class="card-img-top" alt="{{ template_name }}">
-                <div class="card-body text-center">
-                    <h5 class="card-title">{{ template_name }}</h5>
-                    <form action="/packing-list/" method="get">
-                        <input type="hidden" name="template" value="{{ template_name }}">
-                        <button type="submit" class="btn btn-primary">Choose</button>
-                    </form>
-                </div>
+
+        <section class="container text-center mt-5">
+        </section>
+
+        <section class="container">
+            <div class="row justify-content-center section">
+                <h2 class="">Pick Your Packing List</h2>
+                <p>Whether you're traveling for business or pleasure, we've got a list ready for you. Get started below!</p>
             </div>
-        </div>
-        {% endfor %}
+            <div class="row justify-content-center mt-5 section">
+                {% for template_name in templates %}
+                <!-- Responsive column sizes using Bootstrap's grid system -->
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card mb-4">
+                        <img src="{% static 'images/'|add:template_name|lower|add:'.png' %}" class="card-img-top" alt="{{ template_name }}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ template_name }}</h5>
+                            <form action="/packing-list/" method="get">
+                                <input type="hidden" name="template" value="{{ template_name }}">
+                                <button type="submit" class="btn btn-primary">Choose</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
     </div>
-</section>
+</div>
     
 <section class="container mt-5">
     <div class="row justify-content-center section">

@@ -114,18 +114,37 @@
 
 .custom-jumbotron {
   background-image: url('/static/images/trip_images/trip_background.jpg');
-  background-size: cover; /* Ensure the background image covers the entire container */
-  background-position: center; /* Center the background image */
-  padding: 50px; /* Add padding around the content */
-  text-align: center; /* Center-align text */
-  border-radius: 15px; /* Add rounded corners */
-  color: white; /* Text color */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow */
+  background-size: cover;
+  background-position: center;
+  padding: 10px; /* Reduced padding */
+  text-align: center;
+  border-radius: 15px;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Lighter shadow */
 }
 
-/* Adjustments for small screens */
-@media (max-width: 576px) {
+.custom-jumbotron .display-4 {
+  font-size: 28px; /* Further reduced font size for mobile */
+  line-height: 1.1; /* Even tighter line height */
+}
+
+.custom-jumbotron .lead {
+  font-size: 14px; /* Further reduced lead paragraph font */
+  line-height: 1.2; /* Tighter line height */
+}
+
+@media (min-width: 768px) {
   .custom-jumbotron {
-    padding: 30px; /* Reduce padding for smaller screens */
+      padding: 40px 20px; /* Restored larger padding for larger screens */
+  }
+
+  .custom-jumbotron .display-4 {
+      font-size: 50px; /* Restored larger font size for desktop */
+      line-height: 1.1;
+  }
+
+  .custom-jumbotron .lead {
+      font-size: 20px; /* Restored larger text for desktop */
+      line-height: 1.4;
   }
 }
