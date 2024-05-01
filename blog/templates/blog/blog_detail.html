@@ -1,21 +1,54 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 <div class="container mt-4">
-    <div class="row">
-        <div class="col-lg-12">
-            <!-- Title Section -->
-            <div class="mb-4 blog-title-section">
-                <h1 class="display-4">{{ object.title }}</h1>
-                <p class="text-muted">Written by {{ object.author }} on {{ object.created_on|date:"Y-m-d" }}</p>
+    <!-- Featured Image Section with Title Overlay (Full Width) -->
+    <div class="row pb-3">
+        <div class="col-12">
+            <div class="blog-header" style="background-image: url('{% if object.featured_image %}{{ object.featured_image.url }}{% else %}{% static 'images/trip_images/trip_background.jpg' %}{% endif %}');">
+                <div class="blog-title-overlay">
+                    <h1 class="display-4 text-white">{{ object.title }}</h1>
+                </div>
             </div>
-            <!-- Content Section -->
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- Main content area (Post) -->
+        <div class="col-lg-8">
             <div class="card">
+                
                 <div class="card-body blog-content-section">
+                    <p class="text-muted">Written by {{ object.author }} | {{ object.created_on|date:"Y-m-d" }}</p>
                     {{ object.content|safe }}
+                </div>
+            </div>
+        </div>
+        <!-- Sidebar content area -->
+        <div class="col-lg-4">
+            <div class="sidebar-sticky pb-5">
+                <!-- Static Description with Logo -->
+                <div class="site-description mb-4">
+                    
+                    <h3> <img src="{% static 'images/logo/epl_logo_transparent_trim.png' %}" alt="Easy Packing List Icon" style="height: 40px; margin-right: 10px;"> Easy Packing List </h3>
+                    <p> Take the mess and stress out of packing. </p>
+                </div>
+                <!-- Link to Create Packing List -->
+                <div class="create-list">
+                    <a href="{% url 'home' %}" class="btn btn-primary">Create Your Own Packing List</a>
+                </div>
+                <!-- Recent Posts -->
+                <div class="recent-posts mb-4">
+                    <h5>Recent Posts</h5>
+                    <ul class="list-unstyled">
+                        {% for post in recent_posts %}
+                        <li><a href="{% url 'blog_detail' slug=post.slug %}">{{ post.title }}</a></li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
+

@@ -11,7 +11,7 @@ import pandas as pd
 from .models import Trip, Item
 from django.utils.timezone import now
 
-DEFAULT_CATEGORIES = ['clothing', 'medication', 'documents', 'toiletries', 'footwear', 'tech', 'snacks', 'etc']
+DEFAULT_CATEGORIES = ['clothing', 'documents', 'medication', 'toiletries', 'footwear', 'tech', 'snacks', 'etc']
 
 def home(request):
     # Reading template names from the JSON file
@@ -137,7 +137,7 @@ def packing_list(request, trip_uuid=None):
     })
 
 def setup_packing_lists(selected_template):
-    categories = set(DEFAULT_CATEGORIES)
+    categories = DEFAULT_CATEGORIES.copy()
     to_pack = {category: [] for category in categories}
     packed = {category: [] for category in categories}
 
@@ -150,18 +150,18 @@ def setup_packing_lists(selected_template):
 def setup_existing_trip(request, trip_uuid, categories):
     trip = get_object_or_404(Trip, uuid=trip_uuid, user=request.user)
     items = Item.objects.filter(trip=trip)
-    categories = set(DEFAULT_CATEGORIES)  # Reinforce default categories here
+    categories = DEFAULT_CATEGORIES.copy()
     to_pack = {category: [] for category in categories}
     packed = {category: [] for category in categories}
 
     for item in items:
         category = item.category
-        if category in categories:  # Check if the category is a recognized default
+        if category in categories:
             if item.is_packed:
                 packed[category].append(item.name)
             else:
                 to_pack[category].append(item.name)
-        else:  # Handle unexpected categories
+        else:  
             if category not in to_pack:
                 to_pack[category] = []
                 packed[category] = []

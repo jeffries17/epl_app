@@ -8,6 +8,7 @@
 
     <title>Easy Packing List</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/packinglist.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo/favicon.ico' %}"/>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +19,10 @@
 </head>
 <body>
     <header class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'home' %}">Easy Packing List</a>
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo/epl_logo_transparent_trim.png' %}" alt="Easy Packing List Icon" style="height: 45px; margin-right: 10px;">
+            Easy Packing List
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
