@@ -9,6 +9,7 @@ urlpatterns = [
     path('my-trips/', user_trips_view, name='my_trips'),
     path('delete-trip/<uuid:trip_uuid>/', views.delete_trip, name='delete_trip'),
     path('about/', about, name='about'),
+    path('blog/', about, name='blog'),
 ]
 
 # Add Django site authentication urls (for login, logout, password management)
